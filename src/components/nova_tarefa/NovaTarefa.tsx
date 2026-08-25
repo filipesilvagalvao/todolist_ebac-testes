@@ -1,11 +1,11 @@
 "use client"
 import { useState } from "react"
-import { addTask } from "@/utils"
-import styles from "./Form.module.css"
+import { addTask } from "@/utils/post_task"
+import styles from "./NovaTarefa.module.css"
 
 
 
-function Form() {
+function NovaTarefa() {
 
     const [text, setText] = useState("")
 
@@ -23,4 +23,4 @@ function Form() {
     )
 }
 
-export default Form
+export default NovaTarefa

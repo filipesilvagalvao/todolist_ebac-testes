@@ -1,9 +1,11 @@
-import Form from "@/components/form/Form";
+import NovaTarefa from "@/components/nova_tarefa/NovaTarefa";
+import Task from "@/components/task/Task";
 
 export default function Home() {
   return (
    <main>
-    <Form/>
+     <NovaTarefa/>
+     <Task/>
    </main>
   );
 }
