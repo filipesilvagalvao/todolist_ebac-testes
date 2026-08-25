@@ -1,0 +1,13 @@
+.form{
+    width: min(1100px,100%);
+    margin: auto;
+    display: flex;
+}
+
+.form_input{
+    width: 100%;
+}
+
+.form_btn{
+    padding: 5px;
+}

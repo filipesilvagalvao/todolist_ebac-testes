@@ -1,4 +1,4 @@
-import { SyntheticEvent } from "react"
+import { Dispatch, SetStateAction, SyntheticEvent } from "react"
 
 type Task = {
     id: number,
@@ -6,10 +6,10 @@ type Task = {
     status: boolean
 }
 
-const addTask = (e: SyntheticEvent, add_text:string) => {
+const addTask = (e: SyntheticEvent, add_text:string,setText:Dispatch<SetStateAction<string>>) => {
 
     e.preventDefault()
-
+   
     const tasks_in_storage = localStorage.getItem("tasks")
 
     const tasks: Task[] = typeof tasks_in_storage === "string" && JSON.parse(tasks_in_storage) || [];
@@ -25,6 +25,8 @@ const addTask = (e: SyntheticEvent, add_text:string) => {
         ]
 
         localStorage.setItem("tasks", JSON.stringify(first_task))
+        
+        setText("")
 
         return;
     }
@@ -38,6 +40,9 @@ const addTask = (e: SyntheticEvent, add_text:string) => {
     tasks.push(new_task)
 
     localStorage.setItem("tasks", JSON.stringify(tasks))
+
+    setText("")
+
 }
 
 export {addTask}
