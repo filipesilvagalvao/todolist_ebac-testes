@@ -2,7 +2,6 @@
     width: min(1100px, 100%);
     margin: auto;
     display: flex;
-
 }
 
 .form_input {
@@ -21,6 +20,7 @@
     background-color: var(--main-color);
     color: var(--text-color-2);
     border-radius: 0 10px 10px 0;
+    border: 1px solid var(--border-color-1);
     cursor: pointer;
     font-size: 1rem;
 }
