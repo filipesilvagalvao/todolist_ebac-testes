@@ -3,8 +3,6 @@ import { useState } from "react"
 import { addTask } from "@/utils/post_task"
 import styles from "./NovaTarefa.module.css"
 
-
-
 function NovaTarefa() {
 
     const [text, setText] = useState("")
