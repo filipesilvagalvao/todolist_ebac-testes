@@ -4,15 +4,14 @@ import styles from "./TaskList.module.css";
 import { Task_props } from "@/utils/post_task";
 import Task from "../task/Task";
 import { useEffect, useState } from "react";
+import { tasks_in_storage } from "@/utils/tasks_in_storage";
 
 function TaskList() {
     const [tasks, setTasks] = useState<Task_props[]>([]);
 
     useEffect(() => {
-        const tasksInStorage = localStorage.getItem("tasks");
-
-        if (tasksInStorage) {
-            const parsedTasks: Task_props[] = JSON.parse(tasksInStorage);
+        if (tasks_in_storage) {
+            const parsedTasks: Task_props[] = JSON.parse(tasks_in_storage);
             setTasks(parsedTasks);
         }
     }, []);

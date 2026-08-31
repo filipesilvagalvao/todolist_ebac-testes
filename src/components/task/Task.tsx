@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import { Task_props } from "@/utils/post_task"
 import { useEffect, useState } from "react"
+import { tasks_in_storage } from "@/utils/tasks_in_storage"
+import { deleteTask } from "@/utils/delete_task"
+import { chageStatus } from "@/utils/change_status"
 
 function Task({ text, status, id }: Task_props) {
 
@@ -12,32 +15,11 @@ function Task({ text, status, id }: Task_props) {
     const [tasks, setTasks] = useState<Task_props[]>([]);
 
     useEffect(() => {
-        const tasksInStorage = localStorage.getItem("tasks");
-
-        if (tasksInStorage) {
-            const parsedTasks: Task_props[] = JSON.parse(tasksInStorage);
+        if (tasks_in_storage) {
+            const parsedTasks: Task_props[] = JSON.parse(tasks_in_storage);
             setTasks(parsedTasks);
         }
     }, []);
-
-    const chageStatus = () => {
-
-        const new_task = tasks.map((task) =>
-            task.id === id
-                ? { ...task, status: !task.status }
-                : task
-        )
-
-        localStorage.setItem("tasks", JSON.stringify(new_task))
-
-        setChange_status(!change_status)
-
-    }
-
-    const deleteTask = () => {
-        const deleted_task = tasks.filter(task => task.id !== id)
-        localStorage.setItem("tasks", JSON.stringify(deleted_task))
-    }
 
     return (
         <article className={styles.task}>
@@ -48,14 +30,14 @@ function Task({ text, status, id }: Task_props) {
                     name=""
                     id=""
                     checked={change_status}
-                    onChange={chageStatus}
+                    onChange={()=>chageStatus(tasks,setChange_status,change_status,id)}
                 />
             </div>
 
             <p className={styles.task__text}>{text}</p>
 
             <div className={styles.task__delete}>
-                <button onClick={deleteTask}>
+                <button onClick={()=>deleteTask(tasks, id)}>
                     <FontAwesomeIcon icon={faTrash} />
                 </button>
             </div>

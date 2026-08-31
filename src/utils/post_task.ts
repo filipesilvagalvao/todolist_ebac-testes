@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, SyntheticEvent } from "react"
+import { tasks_in_storage } from "./tasks_in_storage"
 
 export type Task_props = {
     id?: number,
@@ -9,8 +10,6 @@ export type Task_props = {
 const addTask = (e: SyntheticEvent, add_text:string,setText:Dispatch<SetStateAction<string>>) => {
 
     e.preventDefault()
-   
-    const tasks_in_storage = typeof window !== 'undefined' ? localStorage.getItem("tasks") : null;
 
     const tasks: Task_props[] = typeof tasks_in_storage === "string" && JSON.parse(tasks_in_storage) || [];
 
