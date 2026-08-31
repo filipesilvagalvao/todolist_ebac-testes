@@ -6,7 +6,6 @@ import styles from "./NovaTarefa.module.css"
 function NovaTarefa() {
 
     const [text, setText] = useState("")
-    
 
     return (
         <form onSubmit={(e) => addTask(e, text, setText)} className={styles.form}>

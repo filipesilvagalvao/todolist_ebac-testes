@@ -10,7 +10,7 @@ const addTask = (e: SyntheticEvent, add_text:string,setText:Dispatch<SetStateAct
 
     e.preventDefault()
    
-    const tasks_in_storage = localStorage.getItem("tasks");
+    const tasks_in_storage = typeof window !== 'undefined' ? localStorage.getItem("tasks") : null;
 
     const tasks: Task_props[] = typeof tasks_in_storage === "string" && JSON.parse(tasks_in_storage) || [];
 
