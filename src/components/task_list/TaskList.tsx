@@ -1,12 +1,14 @@
 "use client";
-
 import styles from "./TaskList.module.css";
 import { Task_props } from "@/utils/post_task";
 import Task from "../task/Task";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { tasks_in_storage } from "@/utils/tasks_in_storage";
+import { Tasks_Context } from "@/app/context/Tasks_Context";
 
 function TaskList() {
+    const tasks_context = useContext(Tasks_Context)
+    
     const [tasks, setTasks] = useState<Task_props[]>([]);
 
     useEffect(() => {

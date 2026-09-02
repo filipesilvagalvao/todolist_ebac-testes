@@ -1,12 +1,10 @@
-import NovaTarefa from "@/components/nova_tarefa/NovaTarefa";
-import TaskList from "@/components/task_list/TaskList";
+import Container from "@/components/container/Container";
 
 export default function Home() {
-  
+
   return (
     <main>
-      <NovaTarefa />
-      <TaskList/>
+      <Container/>
     </main>
   );
 }
