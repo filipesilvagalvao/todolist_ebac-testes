@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction, SyntheticEvent } from "react"
-import { tasks_in_storage } from "./tasks_in_storage"
 
 export type Task_props = {
     id?: number,
@@ -7,13 +6,17 @@ export type Task_props = {
     status: boolean
 }
 
-const addTask = (e: SyntheticEvent, add_text:string,setText:Dispatch<SetStateAction<string>>) => {
+const addTask = (
+    e: SyntheticEvent,
+    add_text: string,
+    setText: Dispatch<SetStateAction<string>>,
+    tasks: Task_props[],
+    setTasks: Dispatch<SetStateAction<Task_props[]>>
+) => {
 
     e.preventDefault()
 
-    const tasks: Task_props[] = typeof tasks_in_storage === "string" && JSON.parse(tasks_in_storage) || [];
-
-    if (tasks === null) {
+    if (tasks === null || tasks.length === 0) {
 
         const first_task = [
             {
@@ -24,24 +27,24 @@ const addTask = (e: SyntheticEvent, add_text:string,setText:Dispatch<SetStateAct
         ]
 
         localStorage.setItem("tasks", JSON.stringify(first_task))
-        
+        setTasks(first_task)
         setText("")
 
         return;
     }
 
     const new_task = {
-        id: tasks.length + 1,
+        id: Math.max(...tasks.map(t => t.id || 0)) + 1,
         text: add_text,
         status: false
     }
 
-    tasks.push(new_task)
+    const updatedTasks = [...tasks, new_task]
 
-    localStorage.setItem("tasks", JSON.stringify(tasks))
-
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks))
+    setTasks(updatedTasks)
     setText("")
 
 }
 
-export {addTask}
+export { addTask }

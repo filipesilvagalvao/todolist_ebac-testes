@@ -1,5 +1,57 @@
-.TaskList{
+.TaskList {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+}
+
+.TaskList__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 0 4px;
+}
+
+.TaskList__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color-1);
+}
+
+.TaskList__counter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+}
+
+.TaskList__counterItem {
+    color: #6b7280;
+}
+
+.TaskList__counterPending {
+    color: #f59e0b;
+}
+
+.TaskList__counterCompleted {
+    color: var(--main-color);
+}
+
+.TaskList__divider {
+    color: #d1d5db;
+}
+
+.TaskList__items {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.TaskList__empty {
+    text-align: center;
+    color: #9ca3af;
+    font-size: 1rem;
+    padding: 40px 20px;
+    background-color: var(--bg-color-2);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
 }

@@ -3,23 +3,16 @@ import styles from "./Task.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import { Task_props } from "@/utils/post_task"
-import { useEffect, useState } from "react"
-import { tasks_in_storage } from "@/utils/tasks_in_storage"
-import { deleteTask } from "@/utils/delete_task"
-import { chageStatus } from "@/utils/change_status"
+import { memo } from "react"
+import { useTask } from "@/app/context/Tasks_Context"
 
-function Task({ text, status, id }: Task_props) {
+const Task = memo(function Task({ text, status, id }: Task_props) {
 
-    const [change_status, setChange_status] = useState(status)
+    const { deleteTask, toggleTask } = useTask()
 
-    const [tasks, setTasks] = useState<Task_props[]>([]);
-
-    useEffect(() => {
-        if (tasks_in_storage) {
-            const parsedTasks: Task_props[] = JSON.parse(tasks_in_storage);
-            setTasks(parsedTasks);
-        }
-    }, []);
+    const textClassName = status
+        ? `${styles.task__text} ${styles["task__text--completed"]}`
+        : styles.task__text
 
     return (
         <article className={styles.task}>
@@ -27,23 +20,21 @@ function Task({ text, status, id }: Task_props) {
             <div className={styles.task__check}>
                 <input
                     type="checkbox"
-                    name=""
-                    id=""
-                    checked={change_status}
-                    onChange={()=>chageStatus(tasks,setChange_status,change_status,id)}
+                    checked={status}
+                    onChange={() => toggleTask(id!)}
                 />
             </div>
 
-            <p className={styles.task__text}>{text}</p>
+            <p className={textClassName}>{text}</p>
 
             <div className={styles.task__delete}>
-                <button onClick={()=>deleteTask(tasks, id)}>
+                <button onClick={() => deleteTask(id!)}>
                     <FontAwesomeIcon icon={faTrash} />
                 </button>
             </div>
 
         </article>
     )
-}
+})
 
 export default Task
