@@ -21,7 +21,7 @@ function TaskList() {
     return (
         <section className={styles.TaskList}>
             <div className={styles.TaskList__header}>
-                <h2 className={styles.TaskList__title}>Minhas Tarefas</h2>
+                <h2 className={styles.TaskList__title}>Tarefas</h2>
                 <div className={styles.TaskList__counter}>
                     <span className={styles.TaskList__counterItem}>
                         {total} {total === 1 ? "tarefa" : "tarefas"}
