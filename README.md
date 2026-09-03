@@ -238,4 +238,4 @@ Todas as tarefas são salvas no `localStorage` do navegador com a chave `"tasks"
 
 ## Licença
 
-Este é um projeto oberto.
+Este é um projeto aberto.
